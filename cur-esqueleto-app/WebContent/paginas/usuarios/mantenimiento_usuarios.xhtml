@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:graphicImage name="/imagenes/barra_ajax.gif" />
+			</p:dialog>
+
+			<p:messages globalOnly="false" showDetail="false" />
+
+			<p:panelGrid columns="2" layout="grid" id="pnlDatosUsuario"
+				style="border:0px none;background:none"
+				columnClasses="ten-percent , thirty-percent">
+				<p:outputLabel value="Nombre: "></p:outputLabel>
+				<p:inputText value="#{usuarioMb.nombre}"></p:inputText>
+
+				<p:outputLabel value="Apellido: "></p:outputLabel>
+				<p:inputText value="#{usuarioMb.apellido}"></p:inputText>
+
+				<p:outputLabel value="Usuario: "></p:outputLabel>
+				<p:inputText value="#{usuarioMb.usuario}"></p:inputText>
+
+				<p:outputLabel value="Clave: "></p:outputLabel>
+				<p:password value="#{usuarioMb.clave}"></p:password>
+
+				<p:commandButton value="Insertar" icon="ui-icon-disk"
+					actionListener="#{usuarioMb.insertarUsuario()}"
+					update="tblUsuarios "></p:commandButton>
+					
+				<p:commandButton value="Guardar" icon="ui-icon-disk"
+					actionListener="#{usuarioMb.actualizarUsuario()}"
+					update="tblUsuarios"></p:commandButton>
+
+			</p:panelGrid>
+
+			<p:dataTable id="tblUsuarios" value="#{usuarioMb.usuarios}" var="usu"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+				rowsPerPageTemplate="2,6,12">
+				<p:column headerText="ID">
+					<p:outputLabel value="#{usu.code}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="NOMBRE">
+					<p:outputLabel value="#{usu.name}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="USUARIO" filterBy="#{usu.usuario}"  filterMatchMode="contains" >
+					<p:outputLabel value="#{usu.usuario}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="ACTUALIZAR">
+					<p:commandButton value="Actualizar" update=":#{p:component('pnlDatosUsuario')}" actionListener="#{usuarioMb.seleccionarUsuario(usu)}" icon="ui-icon-pencil"></p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

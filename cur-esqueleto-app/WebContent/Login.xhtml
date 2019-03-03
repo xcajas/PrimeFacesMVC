@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>SWS | Login1</title>
+	 <link rel="shortcut icon" 
+     type="image/png" 
+     href="#{request.contextPath}/resources/imagenes/sws.png"/> 
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+	<h:outputScript name="js/layout.js" library="sentinel-layout" />
+	<h:outputStylesheet name="css/font-icon-layout.css"
+		library="sentinel-layout" />
+	<h:outputStylesheet name="css/sentinel-layout.css"
+		library="sentinel-layout" />
+	<h:outputStylesheet name="css/core-layout.css"
+		library="sentinel-layout" />
+
+	<script type="text/javascript">
+		function ChangeCase(elem) {
+			elem.value = elem.value.toUpperCase();
+		}
+	</script>
+</h:head>
+
+<h:body class="fontRegular login-back white-back">
+	<h:form>
+	    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    		<p:graphicImage name="/imagenes/barra_ajax.gif"   />
+		</p:dialog>
+		<!-- <p:panel id="panelLogin" >-->
+		<div
+			class="Container80 MaxWid500 Fnone MarAuto TexAlCenter PaddingTopPercent10">
+			<a href="" id="login-logo"> <span
+				class="Fs30 FontTitilliumSemiBoldItalic Fleft"> 
+				<span class="hardblue">PORTAL</span>
+				<span class="softblue"> WEB CURSO </span> 
+				
+			</span>
+			</a>
+			<div class="EmptyBox10"></div>
+			<p:messages globalOnly="false" showDetail="false" />
+		</div>
+
+		
+		<!-- LOGIN BOX COVER START -->
+		<div class="Container80 MaxWid500 white-back Fnone MarAuto BordRad10"
+			id="login-box">
+			<div class="Container100">
+				<div
+					class="Container100 TexAlCenter Animated05 BoxSizeBorder TabBtn left TabBtnActiveLeft"
+					role="1">
+					<div class="Container80 Fnone MarAuto FontBold">
+						<i class="icon-lock"></i> Login
+					</div>
+				</div>
+				<!-- 			<div -->
+				<!-- 				class="Container50 TexAlCenter Animated05 BoxSizeBorder TabBtn right" -->
+				<!-- 				role="2"> -->
+				<!-- 				<div class="Container80 Fnone MarAuto FontBold"> -->
+				<!-- 					<i class="icon-key-1"></i> Solicitud de clave -->
+				<!-- 				</div> -->
+				<!-- 			</div> -->
+
+				<div class="Container90 Fnone MarAuto TexAlCenter TabContent"
+					id="TAB1">
+					<div class="EmptyBox50"></div>
+					<p:inputText placeholder="Usuario" id="txtUsuario" value="#{loginMb.usuario}" maxlength="15"
+						styleClass="Container80 Fnone MarAuto Fs18" />
+					<div class="EmptyBox10"></div>
+					<p:password placeholder="Password" id="txtClave" value="#{loginMb.clave}"
+						styleClass="Container80 Fnone MarAuto Fs18" feedback="false" />
+					<div class="EmptyBox20"></div>
+
+					<div class="EmptyBox30"></div>
+
+					<p:commandButton value="Login" styleClass="Fs16" update="@form" action="#{loginMb.doLogin}"></p:commandButton>
+					
+					
+					<div class="EmptyBox50"></div>
+				</div>
+
+			</div>
+		</div>
+		<div align="right" style="background-color: transparent; bottom: 0px">
+		</div>
+	</h:form>
+</h:body>
+
+</html>

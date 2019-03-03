@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="cur-esqueleto-app" transaction-type="JTA">
+	
+		<jta-data-source>java:/VentaDS</jta-data-source>
+		<class>com.curso.entidades.OpcionDto</class>
+		<class>com.curso.entidades.OpcionRolDto</class>
+		<class>com.curso.entidades.RolDto</class>
+		<class>com.curso.entidades.UsuarioDto</class>
+		<class>com.curso.entidades.UsuarioRolDto</class>
+		<properties>
+			<!-- Dialecto de BD-->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />						
+			<!-- Permite actualizar y crear el modelo de BD-->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<!-- Es un valor de cache-->
+			<property name="hibernate.jdbc.batch_size" value="0" />
+			<!-- Permite darle formato a las sentencias-->
+			<property name="hibernate.format_sql" value="true" />
+			<!-- Permite mostar en consola las sentencias SQL que se generan-->
+			<property name="hibernate.show_sql" value="true" />
+		</properties>		
+	</persistence-unit>
+</persistence>
